@@ -23,7 +23,16 @@
 ### Deploy
 
 ```bash
+echo "FROM craftslab/gerritdocker:latest" > onbuild
+
 docker pull craftslab/gerritdocker:latest
+docker build \
+  --build-arg GERRIT_NAME=gerrit \
+  --build-arg GERRIT_UID=`id -u` \
+  --build-arg GERRIT_GID=`id -g` \
+  --no-cache -f onbuild -t craftslab/gerritdocker:new .
+
+rm -f onbuild
 ```
 
 

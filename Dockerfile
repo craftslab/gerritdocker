@@ -2,8 +2,8 @@ FROM ubuntu:20.04
 MAINTAINER Gerrit Code Review Community
 
 ARG NAME=gerrit
-ARG GID=1000
 ARG UID=1000
+ARG GID=1000
 
 # Add Gerrit packages repository
 RUN apt-get update && \
@@ -44,3 +44,13 @@ EXPOSE 29418 8080
 VOLUME ["/var/gerrit/git", "/var/gerrit/index", "/var/gerrit/cache", "/var/gerrit/db", "/var/gerrit/etc"]
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+# Build for Gerrit UID/GID
+ONBUILD USER root
+ONBUILD ARG GERRIT_NAME=gerrit
+ONBUILD ARG GERRIT_UID=1000
+ONBUILD ARG GERRIT_GID=1000
+ONBUILD RUN groupmod -g $GERRIT_GID $GERRIT_NAME && \
+            usermod -u $GERRIT_UID $GERRIT_NAME && \
+            chown -R $GERRIT_NAME:$GERRIT_NAME /var/gerrit
+ONBUILD USER $GERRIT_NAME
