@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  gerrit:
+    image: craftslab/gerritdocker:3.3.2-ubuntu20
+    ports:
+      - "29418:29418"
+      - "8080:8080"
+    volumes:
+      - /var/gerrit/etc:/var/gerrit/etc
+      - /var/gerrit/git:/var/gerrit/git
+      - /var/gerrit/db:/var/gerrit/db
+      - /var/gerrit/index:/var/gerrit/index
+      - /var/gerrit/cache:/var/gerrit/cache
+    environment:
+      - CANONICAL_WEB_URL=http://127.0.0.1:8080
+    #command: init

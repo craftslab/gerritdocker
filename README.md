@@ -28,9 +28,27 @@ docker pull craftslab/gerritdocker:latest
 
 
 
+### Init
+
+```bash
+# The external filesystem needs to be initialized with gerrit.war beforehand:
+# All-Projects and All-Users Git repositories created in Gerrit
+# System Group UUIDs created in Git repositories
+# The initialization can be done as a one-off operation before starting all containers.
+./init.sh
+```
+
+
+
 ### Run
 
 ```bash
+# Uncomment the command: init option in docker-compose.yaml
+# and run Gerrit with docker-compose in foreground.
+./run.sh
+
+# Comment out the command: init option in docker-compose.yaml
+# and start all the docker-compose nodes
 ./run.sh
 ```
 
