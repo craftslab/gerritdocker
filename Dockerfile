@@ -1,9 +1,9 @@
 FROM ubuntu:20.04
 MAINTAINER Gerrit Code Review Community
 
-ARG GID=1002
-ARG UID=1002
 ARG NAME=gerrit
+ARG GID=1000
+ARG UID=1000
 
 # Add Gerrit packages repository
 RUN apt-get update && \
@@ -27,6 +27,11 @@ RUN apt-get -y install gerrit=3.3.2-1 && \
     groupmod -g $GID $NAME && \
     usermod -u $UID $NAME && \
     chown -R $NAME:$NAME /var/gerrit
+
+# Configure timezone
+RUN apt-get -y install locales && \
+    cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone
 
 USER $NAME
 
