@@ -2,7 +2,7 @@ version: '3'
 
 services:
   gerrit:
-    image: craftslab/gerritdocker:3.3.2-ubuntu20
+    image: craftslab/gerritdocker:3.3.3-ubuntu20
     ports:
       - "29418:29418"
       - "8080:8080"
