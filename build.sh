@@ -2,7 +2,7 @@
 
 FILE=Dockerfile
 NAME=craftslab/gerritdocker
-TAG=3.3.3-ubuntu20
+TAG=3.4.0-ubuntu20
 
 docker build --no-cache -f $FILE -t $NAME:$TAG .
 
