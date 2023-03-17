@@ -66,6 +66,5 @@ rm -f onbuild
 ### Reference
 
 - [gerritbuild](https://github.com/craftslab/gerritbuild)
-- [gerritdeploy](https://github.com/craftslab/gerritdeploy)
 - [Gerrit Docker](https://hub.docker.com/r/gerritcodereview/gerrit)
 - [Gerrit Dockerfile](https://github.com/GerritCodeReview/docker-gerrit)
